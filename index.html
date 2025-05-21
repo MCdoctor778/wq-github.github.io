@@ -41,6 +41,16 @@
     <p>今日：调参，模型只能学习到部分特征，初步先增大detection_loss的权重，架构目前应该已经够复杂了，对于一个简单任务来说。但模型收敛了，只是效果不太好，说明之前的结构调整和数据调整应当是有效的。</p>
   </div>
 
+  <div class="entry">
+    <div class="date">2025-05-20</div>
+    <p>今日：调参，出了个bug，梯度溢出了，在param_unet层全都是nan，用o3max试了下，分两次解决了问题，第一次使用梯度裁剪并没有解决问题，考虑是posweight和计数损失的问题；第二次尝试溯源，发现加载完成后是没问题的，问题出现在反向过程，把scaler = GradScaler(init_scale=1024., growth_interval=200)的初始放大倍数缩小，并降低了pos_weight，loss正常了。</p>
+  </div>
+
+  <div class="entry">
+    <div class="date">2025-05-21</div>
+    <p>今日：发现5.17的最终效果是瓶颈，另外在薅gemini的会员，写高等激光技术结课论文。</p>
+  </div>
+
   <!-- 新的日志可以在这里复制粘贴添加 -->
 </body>
 </html>
