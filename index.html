@@ -57,7 +57,12 @@
   </div>
   <div class="entry">
     <div class="date">2025-05-26</div>
-    <p>今日：调整了loss，加入阳性loss计算筛选，但出现了过拟合，所以启用了数据增强抑制过拟合。但同时出现了梯度溢出。debug---</p>
+    <p>今日：调整了loss，加入阳性loss计算筛选，但出现了过拟合，所以启用了数据增强抑制过拟合。但同时出现了梯度溢出。debug---
+    1、先启用数据增强 + Early-Stopping（几乎免费）；（已启用数据增强）
+    2、同时把 OHNM 提升到 30 % 并观察 val_detection_loss 曲线；（已执行，观测中）
+    3、若 FP 仍高，再替换 FocalLoss / 调低 detection_weight；
+    4、最后再决定是否需要结构性正则（Dropout）或更大规模的模型集成。
+    按经验，前两步即可显著降低 false positive，并让 total / detection loss 在验证集重新下降，过拟合曲线会变得平滑。</p>
   </div>
 
   <!-- 新的日志可以在这里复制粘贴添加 -->
