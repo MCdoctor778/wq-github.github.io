@@ -65,6 +65,17 @@
     按经验，前两步即可显著降低 false positive，并让 total / detection loss 在验证集重新下降，过拟合曲线会变得平滑。</p>
   </div>
 
+  <div class="entry">
+    <div class="date">2025-05-27</div>
+    <p>今日：使用了GMM混合损失，想避免因为多任务权重带来的额外问题。</p>
+  </div>
+
+  <div class="entry">
+    <div class="date">2025-05-28</div>
+    <p>今日：发现不对劲。重新采用的GMM损失似乎并不是很合适。亦或是哪里出错了。重新检查了数据增强部分，可视化检查。损失部分暂时放弃了gmm损失，效果不佳。回到原来的损失，发现参数预测部分是否没必要加blur？虽然还没到详细检查参数的时候，另外detection_logits的导出似乎有问题
+    之前一直用的是detection_head，但实际应用中竟然是取的params_unet的第一个通道。。修改了一下，这是逻辑上的大错吧感觉。。另外pos_weight也因此下降了一些，总感觉100太大了，不太合适。继续调参--</p>
+  </div>
+
   <!-- 新的日志可以在这里复制粘贴添加 -->
 </body>
 </html>
